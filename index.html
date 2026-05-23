@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenAI Interview Questions — 1P3A (开放爱)</title>
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --surface: #1a1a1a;
+    --surface-hover: #222;
+    --border: #2a2a2a;
+    --text: #e5e5e5;
+    --text-muted: #888;
+    --accent: #10a37f;
+    --accent-dim: rgba(16,163,127,0.12);
+    --red: #ef4444;
+    --yellow: #eab308;
+    --blue: #3b82f6;
+    --purple: #a855f7;
+    --orange: #f97316;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 24px 80px; }
+  .header { text-align: center; margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+  .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+  .header .subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 12px; }
+  .header .badge { display: inline-block; background: var(--accent-dim); color: var(--accent); font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .stats { display: flex; justify-content: center; gap: 24px; margin-top: 16px; font-size: 13px; color: var(--text-muted); }
+  .stats span { display: flex; align-items: center; gap: 4px; }
+
+  .nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; position: sticky; top: 0; background: var(--bg); padding: 12px 0; z-index: 10; }
+  .nav a { padding: 8px 16px; border-radius: 8px; background: var(--surface); color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: all 0.15s; border: 1px solid var(--border); }
+  .nav a:hover { background: var(--surface-hover); color: var(--text); border-color: var(--accent); }
+
+  .section { margin-bottom: 48px; }
+  .section h2 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .section .section-meta { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 12px; }
+  .card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .card p, .card li { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+  .card ul { padding-left: 20px; }
+  .card li { margin-bottom: 4px; }
+
+  .q-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
+  .q-card:hover { border-color: var(--accent); background: var(--surface-hover); }
+  .q-card .q-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .q-card .q-text { font-size: 14px; font-weight: 500; flex: 1; }
+  .q-card .freq { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
+  .freq-hot { background: rgba(239,68,68,0.15); color: var(--red); }
+  .freq-high { background: rgba(249,115,22,0.15); color: var(--orange); }
+  .freq-med { background: rgba(234,179,8,0.15); color: var(--yellow); }
+  .q-card .q-meta { font-size: 12px; color: var(--text-muted); margin-top: 6px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .q-card .q-detail { font-size: 13px; color: var(--text-muted); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); display: none; line-height: 1.7; }
+  .q-card .q-detail ul { padding-left: 20px; margin-top: 8px; }
+  .q-card .q-detail li { margin-bottom: 4px; }
+  .q-card .q-detail .source-link { color: var(--text-muted); font-size: 12px; margin-top: 8px; display: block; }
+  .q-card .q-detail .source-link a, .exp-card .exp-detail a { color: var(--accent); text-decoration: none; }
+  .q-card .q-detail .source-link a:hover, .exp-card .exp-detail a:hover { text-decoration: underline; }
+  .q-card.open .q-detail { display: block; }
+
+  .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .tag-coding { background: rgba(59,130,246,0.15); color: var(--blue); }
+  .tag-design { background: rgba(168,85,247,0.15); color: var(--purple); }
+  .tag-ml { background: rgba(16,163,127,0.15); color: var(--accent); }
+  .tag-behavioral { background: rgba(234,179,8,0.15); color: var(--yellow); }
+
+  .tip { background: var(--accent-dim); border-left: 3px solid var(--accent); padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 13px; }
+  .warning { background: rgba(239,68,68,0.08); border-left: 3px solid var(--red); padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 13px; }
+
+  .exp-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
+  .exp-card:hover { border-color: var(--accent); }
+  .exp-card .exp-header { display: flex; justify-content: space-between; align-items: center; }
+  .exp-card .exp-title { font-size: 14px; font-weight: 600; }
+  .exp-card .exp-date { font-size: 12px; color: var(--text-muted); }
+  .exp-card .exp-role { font-size: 12px; color: var(--accent); margin-top: 4px; }
+  .exp-card .exp-detail { font-size: 13px; color: var(--text-muted); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); display: none; line-height: 1.7; }
+  .exp-card .exp-detail ul { padding-left: 20px; margin-top: 4px; }
+  .exp-card .exp-detail li { margin-bottom: 4px; }
+  .exp-card.open .exp-detail { display: block; }
+
+  @media (max-width: 600px) {
+    .container { padding: 24px 16px 60px; }
+    .header h1 { font-size: 22px; }
+    .nav { gap: 6px; }
+    .nav a { padding: 6px 12px; font-size: 12px; }
+    .stats { gap: 16px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>开放爱 Interview Questions</h1>
+    <p class="subtitle">OpenAI · Sourced entirely from 一亩三分地 (1Point3Acres)</p>
+    <span class="badge">L6 Core Product Prep</span>
+    <div class="stats">
+      <span>📊 884+ threads</span>
+      <span>💬 15,000+ replies</span>
+      <span>🔄 Updated May 2026</span>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <a href="#format">Format</a>
+    <a href="#coding">Coding</a>
+    <a href="#system-design">System Design</a>
+    <a href="#ml">ML</a>
+    <a href="#behavioral">Behavioral</a>
+    <a href="#experiences">Full Experiences</a>
+    <a href="#tips">Tips</a>
+  </nav>
+
+  <!-- TIPS -->
+  <div class="section" id="tips">
+    <h2>🎯 Key Tips from 1P3A</h2>
+    <p class="section-meta">Distilled from candidate reports</p>
+
+    <div class="card">
+      <ul>
+        <li>🔴 <strong>Speed is paramount</strong> — must finish ALL sub-problems with working, tested code. Incomplete = fail.</li>
+        <li>🔴 <strong>Prepare ALL SD topics</strong> — the question pool is known. Prepare every single one.</li>
+        <li>🟡 <strong>75-min "system coding" round</strong> — unique to OpenAI. Requires high-level design AND runnable code in one session.</li>
+        <li>🟡 <strong>Infection spread is THE most common coding question</strong> — prepare all 5 variants thoroughly.</li>
+        <li>🟡 <strong>Social Network with Snapshots is rising in frequency</strong> — OOD-focused.</li>
+        <li>🟢 <strong>AI Safety</strong> — read OpenAI's AI Safety blog posts. Prepare personal examples.</li>
+        <li>🟢 <strong>No level negotiation pre-interview</strong> — level determined by HC after all rounds.</li>
+        <li>🟢 <strong>Results come fast</strong> — usually 1-3 days after onsite.</li>
+        <li>🟢 <strong>Recruiter gives minimal info</strong> — don't expect topic hints. Prepare everything.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FORMAT -->
+  <div class="section" id="format">
+    <h2>📋 Interview Format</h2>
+    <p class="section-meta">Based on candidate reports from 1P3A</p>
+    <div class="card">
+      <h3>Standard SDE Process</h3>
+      <ul>
+        <li><strong>Phone Screen:</strong> 2 back-to-back sessions (1h coding + 1h system design)</li>
+        <li><strong>Onsite (VO):</strong> 5 rounds — 2× System Design, 1× Coding, 1× Technical Deep Dive, 1× HM Behavioral</li>
+        <li><strong>Coding rounds:</strong> 60-75 min, detailed prompt, must produce working tested code</li>
+        <li><strong>No fixed level targeting:</strong> Level (L4/L5/L6) determined at HC review after interviews</li>
+        <li><strong>75-min "system coding" round:</strong> Unique to OpenAI — requires BOTH high-level design AND runnable code</li>
+        <li><strong>15 min AGI/Safety discussion</strong> may be included in behavioral round</li>
+      </ul>
+    </div>
+    <div class="warning">
+      ⚠️ <strong>Speed is everything.</strong> Multiple candidates report that incomplete code = instant fail. You must finish ALL sub-problems with working tests. Budget your time carefully.
+    </div>
+  </div>
+
+  <!-- CODING -->
+  <div class="section" id="coding">
+    <h2>💻 Coding Questions</h2>
+    <p class="section-meta">Sorted by frequency — 🔥 = appeared in multiple threads</p>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Infection Spread Simulation</div>
+        <span class="freq freq-hot">🔥 VERY HIGH</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-coding">Coding</span>
+        <span>60 min · 5 sub-problems</span>
+      </div>
+      <div class="q-detail">
+        Matrix of plants: "X" (infected), "." (healthy), "I" (immune).
+        <ul>
+          <li><strong>Q1:</strong> Infected plants spread to 8 neighbors each day. Days to equilibrium? → BFS</li>
+          <li><strong>Q2:</strong> Add "I" immune cells that can't be infected. Same question. → Modified BFS</li>
+          <li><strong>Q3:</strong> Infected plants recover after D days → become immune. Track infection day per cell with hashmap</li>
+          <li><strong>Q4:</strong> Plants die if they ever have ≥K infected neighbors. Count deaths after D days</li>
+          <li><strong>Q5:</strong> You can burn one entire row or column on any day. Minimize total deaths → Optimization/greedy</li>
+          <li><strong>Variant:</strong> A cell only gets infected if it has ≥T infected neighbors</li>
+        </ul>
+        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1164914-1-1.html" target="_blank">thread-1164914</a>, <a href="https://www.1point3acres.com/bbs/thread-1171470-1-1.html" target="_blank">thread-1171470</a>, <a href="https://www.1point3acres.com/bbs/thread-1173190-1-1.html" target="_blank">thread-1173190</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Social Network with Snapshots</div>
+        <span class="freq freq-hot">🔥 VERY HIGH</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-coding">Coding</span>
+        <span>60 min · OOD-focused</span>
+      </div>
+      <div class="q-detail">
+        Implement a social network class:
+        <ul>
+          <li><strong>Q1:</strong> add_user(), follow(A,B), unfollow(A,B), create_snapshot(), is_mutual_follow(snapshot_id, A, B)</li>
+          <li><strong>Q2:</strong> Get followers list and following list for a user at a given snapshot</li>
+          <li><strong>Q3:</strong> Follow recommendations — look at who U's followees follow, rank by frequency, return top K</li>
+          <li>Snapshots are immutable; deep copy of follow graph acceptable</li>
+          <li>Must write additional edge case tests beyond provided preset cases</li>
+        </ul>
+        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1158487-1-1.html" target="_blank">thread-1158487</a>, <a href="https://www.1point3acres.com/bbs/thread-1166798-1-1.html" target="_blank">thread-1166798</a>, <a href="https://www.1point3acres.com/interview/problems/post/7100180" target="_blank">problems/7100180</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Tree Machine Counting / Topology via Async Messaging</div>
+        <span class="freq freq-high">🔥 HIGH</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-coding">Coding</span>
+        <span>60 min</span>
+      </div>
+      <div class="q-detail">
+        Tree of machines; parent↔child only via sendAsyncMessage() and receiveMessage():
+        <ul>
+          <li><strong>Q1:</strong> Count total machines. Implement receiveMessage() to handle 'count'/'response' messages</li>
+          <li><strong>Q2:</strong> Return entire tree topology as serialized string, e.g., <code>1[2[4,5],3[6,7]]</code></li>
+          <li><strong>Q3:</strong> Buggy tree class where each node has 1-3 children — debug incorrect return values</li>
+          <li><strong>Follow-up:</strong> Handle cycles with visited set</li>
+        </ul>
+        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1105851-1-1.html" target="_blank">thread-1105851</a>, <a href="https://www.1point3acres.com/bbs/thread-1152949-1-1.html" target="_blank">thread-1152949</a>, <a href="https://www.1point3acres.com/bbs/thread-1149658-1-1.html" target="_blank">thread-1149658</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Toy Language Type System</div>
+        <span class="freq freq-high">🔥 HIGH</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-coding">Coding</span>
+        <span>60 min</span>
+      </div>
+      <div class="q-detail">
+        Implement a type system for a toy language:
+        <ul>
+          <li>Primitives: char, int, float</li>
+          <li>Generics: T1, T2, etc.</li>
+          <li>Tuples: [int, T1, char], can be nested [int, char, [int, T1]]</li>
+          <li>Functions: [int; [int, T1]; T2] -> [char, T2, [float, float]]</li>
+          <li><strong>P1:</strong> Implement to_str for Function & Node classes</li>
+          <li><strong>P2:</strong> Implement infer_return(function, params) — substitute generics, raise errors on type mismatch</li>
+          <li>Example: Func: [T1, T2, int, T1] → [T1, T2], Params: [int, char, int, int] → returns [int, char]</li>
+        </ul>
+        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1120322-1-1.html" target="_blank">thread-1120322</a>, <a href="https://www.1point3acres.com/interview/problems/post/7100065" target="_blank">problems/7100065</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">IPv4 Address Iterator with CIDR Support</div>
+        <span class="freq freq-high">🔥 HIGH</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-coding">Coding</span>
+        <span>60 min · 5 sub-problems</span>
+      </div>
+      <div class="q-detail">
+        Implement an IP address iterator. Must complete all 5 parts with tests. Speed is critical.
+        <br><br>"5 questions all must be written, running, with good test coverage"
+        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1165663-1-1.html" target="_blank">thread-1165663</a>, <a href="https://www.1point3acres.com/interview/problems/post/7100049" target="_blank">problems/7100049</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">GPU Credit Tracker / Quota System</div>
+        <span class="freq freq-high">🔥 HIGH</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-coding">Coding</span>
+        <span>60 min</span>
+      </div>
+      <div class="q-detail">
+        Design 3 APIs:
+        <ul>
+          <li><strong>add_credit(timestamp, amount, expire_duration)</strong> — add credits with expiration</li>
+          <li><strong>use_credit(timestamp, amount)</strong> — consume credits (use earliest-expiring first)</li>
+          <li><strong>get_credit(timestamp)</strong> — return current balance</li>
+        </ul>
+        Edge cases around expiration ordering and race conditions. Appeared in multiple reports.
+        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1113949-1-1.html" target="_blank">thread-1113949</a>, <a href="https://www.1point3acres.com/bbs/thread-1142377-1-1.html" target="_blank">thread-1142377</a>, <a href="https://www.1point3acres.com/interview/problems/post/7100064" target="_blank">problems/7100064</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Implement cd Command with Symlinks</div>
+        <span class="freq freq-med">MEDIUM</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-coding">Coding</span>
+        <span>Phone screen</span>
+      </div>
+      <div class="q-detail">
+        Implement Linux cd: handle ../A/B/, ./A/, ../A/B/../, etc.
+        <br>Follow-up: handle symlinks.
+        <br><br>⚠️ May be retired — one comment says "cd那道题应该不考了"
+        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1173190-1-1.html" target="_blank">thread-1173190</a>, <a href="https://www.1point3acres.com/bbs/thread-1149658-1-1.html" target="_blank">thread-1149658</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Web Crawler (Single + Multi-threaded)</div>
+        <span class="freq freq-med">MEDIUM</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-coding">Coding</span>
+      </div>
+      <div class="q-detail">
+        Given a URL, return all connected links via DFS/BFS. Part 2: multi-threaded version to handle I/O blocking. Python expected.
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/bbs/thread-1149658-1-1.html" target="_blank">thread-1149658</a> (coding summary)</span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Resumable Iterator with Multi-Dimensional Support</div>
+        <span class="freq freq-med">MEDIUM</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-coding">Coding</span>
+        <span>4 sub-problems, sequential reveal</span>
+      </div>
+      <div class="q-detail">
+        Skeleton code provided. Four sub-problems revealed one at a time. Must be bug-free.
+        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1069592-1-1.html" target="_blank">thread-1069592</a>, <a href="https://www.1point3acres.com/interview/problems/post/7100058" target="_blank">problems/7100058</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">OpenSheet: Spreadsheet with Cell Dependencies</div>
+        <span class="freq freq-med">MEDIUM</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-coding">Coding</span>
+      </div>
+      <div class="q-detail">
+        Implement a spreadsheet with formula evaluation and dependency tracking. Topological sort for deps, cycle detection.
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/interview/problems/post/7100054" target="_blank">problems/7100054</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Largest Sub-Grid</div>
+        <span class="freq freq-med">MEDIUM</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-coding">Coding</span>
+      </div>
+      <div class="q-detail">
+        Given a 2D array, find the max size of a square sub-grid such that ALL sub-grids of that size have sum ≤ maxsum.
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/bbs/thread-1149658-1-1.html" target="_blank">thread-1149658</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">In-Memory Database with SQL Operations</div>
+        <span class="freq freq-med">MEDIUM</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-coding">Coding</span>
+        <span>Usually 4 parts, often only 2 completed</span>
+      </div>
+      <div class="q-detail">
+        Similar to LeetCode "Design SQL". 4 parts. Time pressure means most only finish 2.
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/interview/problems/post/7100052" target="_blank">problems/7100052</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">More Coding Problems (from 1P3A problem bank)</div>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-coding">Coding</span>
+        <span>Lower frequency / less detail available</span>
+      </div>
+      <div class="q-detail">
+        <ul>
+          <li>ModalLock and FairModalLock (concurrency)</li>
+          <li>Monster Battle System</li>
+          <li>Shard Rebalancing</li>
+          <li>Memory Allocator</li>
+          <li>Durable Key-Value Store Serialization</li>
+          <li>Payment Processing System (Stripe-like)</li>
+          <li>Chat Bot System Refactoring</li>
+          <li>Multi-Tenant CI/CD Workflow System</li>
+          <li>Webhook Delivery System</li>
+        </ul>
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/interview/problems/company/openai" target="_blank">1P3A problem bank</a> (146 total OpenAI questions)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SYSTEM DESIGN -->
+  <div class="section" id="system-design">
+    <h2>🏗️ System Design Questions</h2>
+    <p class="section-meta">Sorted by frequency</p>
+
+    <div class="tip">
+      💡 From thread-1164914: "Prepare ALL these SD topics before interviewing. The bar is extremely high." One candidate also warns: "cache存什么怎么存都要说清楚" — you must explain cache details precisely.
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Design Slack</div>
+        <span class="freq freq-hot">🔥 VERY HIGH</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-design">System Design</span>
+        <span>60 min · Very tight on time</span>
+      </div>
+      <div class="q-detail">
+        <ul>
+          <li>Features: DM chat, channel chat, thread chat, cold start, delete message</li>
+          <li>Must support large-scale users</li>
+          <li>Just getting through functional requirements takes most of the time</li>
+          <li>Detailed follow-ups on cache strategy, data storage, real-time delivery</li>
+        </ul>
+        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1066512-1-1.html" target="_blank">thread-1066512</a>, <a href="https://www.1point3acres.com/bbs/thread-1105851-1-1.html" target="_blank">thread-1105851</a>, <a href="https://www.1point3acres.com/bbs/thread-1120322-1-1.html" target="_blank">thread-1120322</a>, <a href="https://www.1point3acres.com/interview/problems/post/7100061" target="_blank">problems/7100061</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Design CI/CD Job Scheduler (GitHub Actions)</div>
+        <span class="freq freq-hot">🔥 VERY HIGH</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-design">System Design</span>
+      </div>
+      <div class="q-detail">
+        Multi-tenant CI/CD workflow triggered by git push. Uses k8s and Docker.
+        <ul>
+          <li>Analyze git push → obtain repo ID → read workflow config → schedule jobs</li>
+          <li>Design front-end UI to display workflow progress</li>
+          <li>"GitHub Actions" style — schedule, trigger, execute components</li>
+        </ul>
+        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1113949-1-1.html" target="_blank">thread-1113949</a>, <a href="https://www.1point3acres.com/bbs/thread-1149664-1-1.html" target="_blank">thread-1149664</a>, <a href="https://www.1point3acres.com/interview/problems/post/7100046" target="_blank">problems/7100046</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Design POI (Point of Interest) Service</div>
+        <span class="freq freq-high">🔥 HIGH</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-design">System Design</span>
+      </div>
+      <div class="q-detail">
+        Location-based service like Foursquare/Yelp/Uber. Implement get_poi.
+        <ul>
+          <li>Approaches: geohash vs quadtree — know strengths/weaknesses of both</li>
+          <li>May be asked to design QuadTree finding nearest N points</li>
+          <li>Detailed discussion on indexing, sharding</li>
+        </ul>
+        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1066512-1-1.html" target="_blank">thread-1066512</a>, <a href="https://www.1point3acres.com/bbs/thread-1069592-1-1.html" target="_blank">thread-1069592</a>, <a href="https://www.1point3acres.com/bbs/thread-1149664-1-1.html" target="_blank">thread-1149664</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Design Chess.com (Online Chess)</div>
+        <span class="freq freq-med">MEDIUM</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-design">System Design</span>
+      </div>
+      <div class="q-detail">
+        Design online chess platform. Interviewer goes very deep on details — "cache存什么怎么存都要说清楚"
+        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1164914-1-1.html" target="_blank">thread-1164914</a>, <a href="https://www.1point3acres.com/interview/problems/post/7100178" target="_blank">problems/7100178</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Image Sharing System</div>
+        <span class="freq freq-med">MEDIUM</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-design">System Design</span>
+        <span>VO round</span>
+      </div>
+      <div class="q-detail">
+        Upload, delete, many users. Upload flow, processing, delete without race conditions.
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/bbs/thread-1173190-1-1.html" target="_blank">thread-1173190</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Stock Trading System</div>
+        <span class="freq freq-med">MEDIUM</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-design">System Design</span>
+        <span>VO round</span>
+      </div>
+      <div class="q-detail">
+        Source of truth for order interactions and status. Open discussion on buy/sell flow. Billing/payment services assumed to exist.
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/bbs/thread-1173190-1-1.html" target="_blank">thread-1173190</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">More SD Problems (from 1P3A)</div>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-design">System Design</span>
+      </div>
+      <div class="q-detail">
+        <ul>
+          <li>Design a Cloud IDE (Replit/Codespaces)</li>
+          <li>Design a Virtual Coding System (DevBox)</li>
+          <li>Design YouTube</li>
+          <li>Design Google Calendar</li>
+          <li>Design a URL Shortener</li>
+          <li>Design Sora Video Generation Scheduling</li>
+          <li>Design an AI Chatbot System</li>
+          <li>Design a RAG-Based Chatbot System</li>
+          <li>Design In-Memory Database</li>
+          <li>Design a Crossword Puzzle Solver</li>
+        </ul>
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/interview/problems/company/openai" target="_blank">1P3A problem bank</a> + <a href="https://www.1point3acres.com/bbs/thread-1149664-1-1.html" target="_blank">thread-1149664</a> (SD summary)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ML -->
+  <div class="section" id="ml">
+    <h2>🧠 ML-Specific Questions</h2>
+    <p class="section-meta">For MLE / Research Engineer roles — may overlap with Core Product</p>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Infection Spread — ML Variant (death counting + optimization)</div>
+        <span class="freq freq-high">🔥 HIGH</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-ml">ML</span>
+        <span class="tag tag-coding">Coding</span>
+        <span>60 min per round</span>
+      </div>
+      <div class="q-detail">
+        Same infection problem but with advanced follow-ups: Q4 (death counting), Q5 (burn row/column optimization). MLE/Research Engineer role.
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/bbs/thread-1171470-1-1.html" target="_blank">thread-1171470</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Prompt Backpropagation, PyTorch, Autograd</div>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-ml">ML</span>
+        <span>ML Onsite</span>
+      </div>
+      <div class="q-detail">
+        Implement prompt backpropagation. PyTorch tensor manipulation. Autograd internals.
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/interview/thread/1174369" target="_blank">interview/thread/1174369</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Mining Novel Data from Large Unlabeled Corpus</div>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-ml">ML</span>
+        <span class="tag tag-design">Design</span>
+      </div>
+      <div class="q-detail">
+        Design a system to discover novel data from large unlabeled datasets. Bootstrap from small labeled data, iterate to build quality datasets.
+        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1128388-1-1.html" target="_blank">thread-1128388</a>, <a href="https://www.1point3acres.com/interview/problems/post/7100044" target="_blank">problems/7100044</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Vectorized 1-NN and Neural Network Forward Pass</div>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-ml">ML</span>
+        <span class="tag tag-coding">Coding</span>
+      </div>
+      <div class="q-detail">
+        Implement vectorized 1-nearest-neighbor and a neural network forward pass from scratch.
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/interview/problems/post/7100237" target="_blank">problems/7100237</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Transformer Debugging, Linear Algebra, ML Design</div>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-ml">ML</span>
+        <span>Phone screen</span>
+      </div>
+      <div class="q-detail">
+        Transformer debugging, linear algebra fundamentals, ML design focusing on novel data, classifier details.
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/interview/thread/1144659" target="_blank">interview/thread/1144659</a> (login-walled)</span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Data Labeling Task Scheduler</div>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-ml">ML</span>
+        <span class="tag tag-coding">Coding</span>
+        <span>MLE role</span>
+      </div>
+      <div class="q-detail">
+        Two-part coding problem about constructing a schedule for data labeling work.
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/interview/problems/post/7100239" target="_blank">problems/7100239</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEHAVIORAL -->
+  <div class="section" id="behavioral">
+    <h2>🤝 Behavioral & Deep Dive</h2>
+    <p class="section-meta">From 1P3A candidate reports</p>
+
+    <div class="card">
+      <h3>Technical Deep Dive</h3>
+      <ul>
+        <li>Pick your most impactful project with biggest technical challenge</li>
+        <li>Demonstrate cross-functional collaboration and leadership</li>
+        <li>They go deep — know every decision and trade-off</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>AGI & Safety Discussion (15 min)</h3>
+      <ul>
+        <li>Questions about AI safety and newly released products</li>
+        <li>Read ALL OpenAI AI Safety blog posts</li>
+        <li>Prepare your own AI safety examples</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>HM Behavioral</h3>
+      <ul>
+        <li>Standard: motivation, teamwork, conflict resolution</li>
+        <li>Recruiter call only asks about work experience and motivation</li>
+        <li>Recruiter provides PDF describing interview process</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FULL EXPERIENCES -->
+  <div class="section" id="experiences">
+    <h2>📝 Full Interview Experiences</h2>
+    <p class="section-meta">Click to expand — most recent first</p>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">开放爱 全套 (Full Process) — Onsite</span>
+        <span class="exp-date">Apr 2026</span>
+      </div>
+      <div class="exp-role">SDE General · No fixed level · thread-1173190</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>Phone Coding:</strong> Implement cd command + symlink</li>
+          <li><strong>Phone SD:</strong> Virtual coding system (DevBox)</li>
+          <li><strong>VO:</strong> HM behavioral, 2× SD (Image sharing, Stock trading), Coding (Infection spread), 75-min system coding</li>
+          <li><strong>Note:</strong> 75-min "system coding" round requires both high-level design AND runnable code</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">OpenAI 面试 — MLE Onsite</span>
+        <span class="exp-date">Apr 2026</span>
+      </div>
+      <div class="exp-role">MLE / Research Engineer · thread-1171470</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>ML Coding Round 1 (60 min):</strong> Infection spread with Q4 (deaths) and Q5 (row/column burn optimization)</li>
+          <li><strong>ML Coding Round 2:</strong> Details behind paywall</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">开放爱店面 (Social Network)</span>
+        <span class="exp-date">Mar 2026</span>
+      </div>
+      <div class="exp-role">SDE · thread-1166798</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>Coding:</strong> Social Network with Snapshots (3 questions filled full hour)</li>
+          <li><strong>SD:</strong> Behind paywall</li>
+          <li><strong>Result:</strong> Likely failed due to SD round</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">开放爱面经总结 (Comprehensive Summary) — Failed</span>
+        <span class="exp-date">Feb 2026</span>
+      </div>
+      <div class="exp-role">SDE General (PhD) · thread-1164914</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>Coding:</strong> Infection spread (all 5 questions)</li>
+          <li><strong>SD topics seen:</strong> Slack, CI/CD, Webhook, POI, YouTube, Calendar, ChatGPT, Cloud IDE, URL shortener, Web crawler, Chess.com</li>
+          <li><strong>Key insight:</strong> "Prepare ALL these topics before interviewing. The bar is extremely high."</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">OAI电面coding挂经 (IP Address) — Failed</span>
+        <span class="exp-date">Feb 2026</span>
+      </div>
+      <div class="exp-role">SDE · thread-1165663</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>Coding:</strong> IP Address Iterator — 5 sub-problems</li>
+          <li><strong>Key lesson:</strong> Speed is everything. Must complete all 5 questions running with good test coverage.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">开放爱 面经 (Social Network)</span>
+        <span class="exp-date">Dec 2025</span>
+      </div>
+      <div class="exp-role">SDE · thread-1158487</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>Coding:</strong> Social Network with snapshots — follow, unfollow, mutual follow queries at snapshot</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">开放爱 Infra全套面经</span>
+        <span class="exp-date">Nov 2025</span>
+      </div>
+      <div class="exp-role">Infra · thread-1152949</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>Phone Coding:</strong> Tree machine counting (async messaging)</li>
+          <li><strong>Follow-up:</strong> Handle cycles</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">开放爱 电面 2面 (with solutions)</span>
+        <span class="exp-date">Aug 2025</span>
+      </div>
+      <div class="exp-role">SDE · thread-1142377</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>Coding:</strong> GPU Credit/Quota system — add_credit, use_credit, get_credit</li>
+          <li>Candidate posted solutions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">开放爱 店面 — Failed</span>
+        <span class="exp-date">Apr 2025</span>
+      </div>
+      <div class="exp-role">SDE · thread-1126106</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>Coding:</strong> Not specified (details forgotten; not in summary list at time)</li>
+          <li>Edge cases were numerous</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">开放爱 面经 (Type System + Slack)</span>
+        <span class="exp-date">Mar 2025</span>
+      </div>
+      <div class="exp-role">SDE · thread-1120322</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>Coding:</strong> Toy Language Type System</li>
+          <li><strong>SD:</strong> Design Slack</li>
+          <li><strong>Result:</strong> Failed (likely incomplete coding)</li>
+          <li><strong>Tip:</strong> Recruiter provides PDF describing process</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">开放爱 电面 (Quota + CI/CD)</span>
+        <span class="exp-date">Feb 2025</span>
+      </div>
+      <div class="exp-role">SDE · thread-1113949</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>Coding:</strong> GPU Credit/Quota tracker (3 APIs)</li>
+          <li><strong>SD:</strong> CI/CD (GitHub Actions style)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">开放爱 店面 coding+SD</span>
+        <span class="exp-date">Jan 2025</span>
+      </div>
+      <div class="exp-role">SDE · thread-1105851</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>Coding (60 min):</strong> Tree machine counting + topology</li>
+          <li><strong>SD (60 min):</strong> Design Slack</li>
+          <li>Back-to-back 2 hours total</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">OAI昂赛挂经 (Onsite Fail)</span>
+        <span class="exp-date">May 2024</span>
+      </div>
+      <div class="exp-role">Infra · L5 target · thread-1066512</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>Format:</strong> 5 rounds — 2× SD (Slack + POI), 1× Coding, 1× Deep Dive, 1× HM Behavioral</li>
+          <li><strong>Slack SD:</strong> DM, channels, threads, cold start, delete — very time-pressured</li>
+          <li><strong>Result:</strong> Rejected next day</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIPS -->
+</div>
+
+
+
+</body>
+</html>

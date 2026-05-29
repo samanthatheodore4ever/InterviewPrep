@@ -98,8 +98,8 @@
     <p class="subtitle">OpenAI · Sourced entirely from 一亩三分地 (1Point3Acres)</p>
     <span class="badge">L6 Core Product Prep</span>
     <div class="stats">
-      <span>📊 884+ threads</span>
-      <span>💬 15,000+ replies</span>
+      <span>📊 958+ threads</span>
+      <span>💬 16,700+ replies</span>
       <span>🔄 Updated May 29, 2026</span>
     </div>
   </div>
@@ -131,6 +131,9 @@
         <li>🟢 <strong>Results come fast</strong> — usually 1-3 days after onsite.</li>
         <li>🟢 <strong>Recruiter gives minimal info</strong> — don't expect topic hints. Prepare everything.</li>
         <li>🟢 <strong>Recruiter coding prompt (May 2026):</strong> "60 minutes, CoderPad, live coding. Data-structure heavy — then iterate as new constraints get introduced. We value steady progress, clear thinking, and strong communication."</li>
+        <li>🟢 <strong>Tools:</strong> CoderPad for coding, Excalidraw for system design diagrams.</li>
+        <li>🟡 <strong>HM fit matters as much as technical performance</strong> — "答得完美也不一定让你过，也许hm没看上" (perfect answers don't guarantee passing if HM doesn't see a fit).</li>
+        <li>🟡 <strong>Design Sora is rising fast</strong> — appearing in both phone screens and onsites. It's fundamentally a task scheduler / resource allocation problem.</li>
       </ul>
     </div>
   </div>
@@ -179,7 +182,7 @@
           <li><strong>Q5:</strong> You can burn one entire row or column on any day. Minimize total deaths → Optimization/greedy</li>
           <li><strong>Variant:</strong> A cell only gets infected if it has ≥T infected neighbors</li>
         </ul>
-        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1164914-1-1.html" target="_blank">thread-1164914</a>, <a href="https://www.1point3acres.com/bbs/thread-1171470-1-1.html" target="_blank">thread-1171470</a>, <a href="https://www.1point3acres.com/bbs/thread-1173190-1-1.html" target="_blank">thread-1173190</a></span>
+        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1164914-1-1.html" target="_blank">thread-1164914</a>, <a href="https://www.1point3acres.com/bbs/thread-1171470-1-1.html" target="_blank">thread-1171470</a>, <a href="https://www.1point3acres.com/bbs/thread-1173190-1-1.html" target="_blank">thread-1173190</a>, <a href="https://www.1point3acres.com/bbs/thread-1178391-1-1.html" target="_blank">thread-1178391</a>, <a href="https://www.1point3acres.com/bbs/thread-1177818-1-1.html" target="_blank">thread-1177818</a>, <a href="https://www.1point3acres.com/bbs/thread-1178260-1-1.html" target="_blank">thread-1178260</a>, <a href="https://www.1point3acres.com/bbs/thread-1178236-1-1.html" target="_blank">thread-1178236</a></span>
       </div>
     </div>
 
@@ -284,6 +287,52 @@
         </ul>
         Edge cases around expiration ordering and race conditions. Appeared in multiple reports.
         <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1113949-1-1.html" target="_blank">thread-1113949</a>, <a href="https://www.1point3acres.com/bbs/thread-1142377-1-1.html" target="_blank">thread-1142377</a>, <a href="https://www.1point3acres.com/interview/problems/post/7100064" target="_blank">problems/7100064</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Entropy Calculation from Logits</div>
+        <span class="freq freq-med">NEW</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-ml">ML</span>
+        <span class="tag tag-coding">Coding</span>
+        <span>60 min · Research Org MLE · numpy</span>
+      </div>
+      <div class="q-detail">
+        ML Coding round for Research Engineer role:
+        <ul>
+          <li><strong>Part 1:</strong> Given logits, calculate entropy</li>
+          <li><strong>Part 2:</strong> Implementation using linear layer + softmax (classification)</li>
+          <li><strong>Part 3:</strong> If switching to L1 distance, how to implement with neural network?</li>
+          <li>All implementations in <strong>numpy</strong> (not PyTorch)</li>
+          <li>Two 60-min rounds of ML coding for Research Org</li>
+        </ul>
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/bbs/thread-1177444-1-1.html" target="_blank">thread-1177444</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Transformer Debugging (变形金刚捉虫)</div>
+        <span class="freq freq-med">NEW</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-ml">ML</span>
+        <span class="tag tag-coding">Coding</span>
+        <span>Lead MLE phone screen</span>
+      </div>
+      <div class="q-detail">
+        Given a buggy transformer implementation, find and fix all bugs:
+        <ul>
+          <li>Multiple bugs hidden in the code (at least 4)</li>
+          <li>One bug was a subtle typo — variable name <code>v</code> should have been <code>y</code></li>
+          <li>Requires deep understanding of transformer architecture</li>
+          <li>Paired with infection spread as second round</li>
+          <li>Lead MLE / PhD-level role</li>
+        </ul>
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/bbs/thread-1178260-1-1.html" target="_blank">thread-1178260</a></span>
       </div>
     </div>
 
@@ -529,6 +578,48 @@
 
     <div class="q-card" onclick="this.classList.toggle('open')">
       <div class="q-header">
+        <div class="q-text">Design Sora (Video Generation Task Scheduler)</div>
+        <span class="freq freq-high">🔥 HIGH</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-design">System Design</span>
+        <span>Phone screen + Onsite</span>
+      </div>
+      <div class="q-detail">
+        Design a Sora-like video generation scheduling service. "说白了就是任务调度器，别被题目唬到" (It's fundamentally a task scheduler — don't be intimidated by the name)
+        <ul>
+          <li><strong>Core problem 1:</strong> Resource allocation — what happens when GPU resources aren't enough?</li>
+          <li><strong>Core problem 2:</strong> Worker preemption — how to handle preempted tasks (re-queue, completion tracking)</li>
+          <li><strong>Discussion points:</strong> Kafka vs. Postgres (FOR UPDATE SKIP LOCKED), priority queues, job states</li>
+          <li>Appearing in both phone screens and onsites — frequency is rising rapidly</li>
+        </ul>
+        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1177818-1-1.html" target="_blank">thread-1177818</a>, <a href="https://www.1point3acres.com/bbs/thread-1177558-1-1.html" target="_blank">thread-1177558</a>, <a href="https://www.1point3acres.com/bbs/thread-1178236-1-1.html" target="_blank">thread-1178236</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Design Classifier + Data Mining System</div>
+        <span class="freq freq-med">NEW</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-design">System Design</span>
+        <span class="tag tag-ml">ML</span>
+        <span>MLE phone screen</span>
+      </div>
+      <div class="q-detail">
+        Two-part MLE phone screen:
+        <ul>
+          <li><strong>Part 1:</strong> Classifier with human data — design a classification system leveraging human-labeled data</li>
+          <li><strong>Part 2:</strong> Data mining SD — how to discover/extract novel patterns from medical data</li>
+          <li>Candidate passed phone screen and is waiting for onsite</li>
+        </ul>
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/bbs/thread-1178049-1-1.html" target="_blank">thread-1178049</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
         <div class="q-text">More SD Problems (from 1P3A)</div>
       </div>
       <div class="q-meta">
@@ -541,7 +632,6 @@
           <li>Design YouTube</li>
           <li>Design Google Calendar</li>
           <li>Design a URL Shortener</li>
-          <li>Design Sora Video Generation Scheduling</li>
           <li>Design an AI Chatbot System</li>
           <li>Design a RAG-Based Chatbot System</li>
           <li>Design In-Memory Database</li>
@@ -618,14 +708,20 @@
     <div class="q-card" onclick="this.classList.toggle('open')">
       <div class="q-header">
         <div class="q-text">Transformer Debugging, Linear Algebra, ML Design</div>
+        <span class="freq freq-high">🔥 HIGH</span>
       </div>
       <div class="q-meta">
         <span class="tag tag-ml">ML</span>
-        <span>Phone screen</span>
+        <span>Phone screen + Lead MLE</span>
       </div>
       <div class="q-detail">
-        Transformer debugging, linear algebra fundamentals, ML design focusing on novel data, classifier details.
-        <span class="source-link">Source: <a href="https://www.1point3acres.com/interview/thread/1144659" target="_blank">interview/thread/1144659</a> (login-walled)</span>
+        Transformer debugging is now confirmed as a distinct question type for MLE roles:
+        <ul>
+          <li>Find bugs in transformer implementation (at least 4 bugs, including subtle typos like v→y)</li>
+          <li>Linear algebra fundamentals</li>
+          <li>ML design focusing on novel data, classifier details</li>
+        </ul>
+        <span class="source-link">Sources: <a href="https://www.1point3acres.com/interview/thread/1144659" target="_blank">interview/thread/1144659</a>, <a href="https://www.1point3acres.com/bbs/thread-1178260-1-1.html" target="_blank">thread-1178260</a></span>
       </div>
     </div>
 
@@ -682,6 +778,129 @@
   <div class="section" id="experiences">
     <h2>📝 Full Interview Experiences</h2>
     <p class="section-meta">Click to expand — most recent first</p>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">开放爱店面 — Infection Spread (3.5/5 parts)</span>
+        <span class="exp-date">May 2026</span>
+      </div>
+      <div class="exp-role">SDE · thread-1178391</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>Coding:</strong> Infection spread — completed 3 parts, 4th partially done (test cases half passed), ran out of time debugging</li>
+          <li><strong>Didn't reach Part 5</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">OpenAI ML Coding — Entropy + Neural Network (Research Org)</span>
+        <span class="exp-date">May 2026</span>
+      </div>
+      <div class="exp-role">MLE / Research Engineer · Research Org · Onsite · Positive · thread-1177444</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>ML Coding Round 1 (60 min):</strong> Entropy calculation from logits</li>
+          <li><strong>ML Coding Round 2 (60 min):</strong> Linear layer + softmax classification, L1 distance with neural network</li>
+          <li>All in numpy (not PyTorch)</li>
+          <li>No systems coding round for this role</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">OpenAI Lead MLE — Transformer Debug + Infection — Failed</span>
+        <span class="exp-date">May 2026</span>
+      </div>
+      <div class="exp-role">Lead MLE · PhD · Phone screen · thread-1178260</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>Round 1:</strong> Transformer debugging — found 3 of 4 bugs, missed a typo (v→y)</li>
+          <li><strong>Round 2:</strong> Infection spread — only completed 3 questions</li>
+          <li><strong>Result:</strong> Failed. Candidate noted extreme pressure and regret.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">OpenAI Onsite — Design Sora + Infection Spread</span>
+        <span class="exp-date">May 2026</span>
+      </div>
+      <div class="exp-role">SDE General · Headhunter sourced · Positive · thread-1177818</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>SD:</strong> Design Sora — task scheduler with resource allocation + worker preemption</li>
+          <li><strong>Coding:</strong> Infection spread, all 5 sub-problems</li>
+          <li><strong>Tools:</strong> CoderPad + Excalidraw</li>
+          <li><strong>Note:</strong> "说白了就是任务调度器，别被题目唬到" — don't be intimidated by the Sora name</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">OpenAI Phone+VO 全套 — All High-Frequency Questions</span>
+        <span class="exp-date">May 2026</span>
+      </div>
+      <div class="exp-role">SDE · thread-1178236</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>Coding:</strong> Infection spread + Social Network + Tree Machine Topology</li>
+          <li><strong>SD:</strong> Chess.com + Design Sora</li>
+          <li><strong>Key insight:</strong> "答得完美也不一定让你过，也许hm没看上" — perfect answers don't guarantee passing, HM fit matters</li>
+          <li><strong>Note:</strong> All questions were well-known high-frequency problems from 1P3A summaries</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">OpenAI 点画跟昂塞 (Phone + Onsite)</span>
+        <span class="exp-date">May 2026</span>
+      </div>
+      <div class="exp-role">SDE · Team-matched · thread-1178288</div>
+      <div class="exp-detail">
+        <ul>
+          <li>Team-specific hire. HM round went well.</li>
+          <li>Project deep dive was relevant to the team — interviewer seemed very interested</li>
+          <li>Details mostly behind paywall</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">开放爱过经 — Classifier + Data Mining SD (Passed Phone)</span>
+        <span class="exp-date">May 2026</span>
+      </div>
+      <div class="exp-role">MLE · thread-1178049</div>
+      <div class="exp-detail">
+        <ul>
+          <li><strong>Round 1:</strong> Classifier with human data</li>
+          <li><strong>Round 2:</strong> Data mining SD — extract patterns from medical data</li>
+          <li><strong>Result:</strong> Passed phone screen, waiting for onsite</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card" onclick="this.classList.toggle('open')">
+      <div class="exp-header">
+        <span class="exp-title">openai 一年內二掛經 (Failed Twice in One Year)</span>
+        <span class="exp-date">May 2026</span>
+      </div>
+      <div class="exp-role">SDE · thread-1177453</div>
+      <div class="exp-detail">
+        <ul>
+          <li>First attempt: felt every round was strong, but didn't pass hiring committee</li>
+          <li>Recruiter ghosted — no feedback</li>
+          <li>Second attempt: re-applied, got "strong fit" response, but failed again</li>
+          <li><strong>Key takeaway:</strong> Strong performance doesn't guarantee passing HC. Recruiter communication can be poor.</li>
+        </ul>
+      </div>
+    </div>
 
     <div class="exp-card" onclick="this.classList.toggle('open')">
       <div class="exp-header">

@@ -66,6 +66,11 @@
   .tag-design { background: rgba(168,85,247,0.15); color: var(--purple); }
   .tag-ml { background: rgba(16,163,127,0.15); color: var(--accent); }
   .tag-behavioral { background: rgba(234,179,8,0.15); color: var(--yellow); }
+  .tag-role { background: transparent; border: 1px solid var(--border); color: var(--text-muted); }
+  .tag-role-frontend { border-color: var(--orange); color: var(--orange); }
+  .tag-role-mobile { border-color: var(--purple); color: var(--purple); }
+  .tag-role-ml { border-color: var(--accent); color: var(--accent); }
+  .tag-role-backend { border-color: var(--blue); color: var(--blue); }
 
   .tip { background: var(--accent-dim); border-left: 3px solid var(--accent); padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 13px; }
   .warning { background: rgba(239,68,68,0.08); border-left: 3px solid var(--red); padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 13px; }
@@ -169,6 +174,7 @@
         <span class="freq freq-hot">🔥 VERY HIGH</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-coding">Coding</span>
         <span>60 min · 5 sub-problems</span>
       </div>
@@ -192,6 +198,7 @@
         <span class="freq freq-hot">🔥 VERY HIGH</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-coding">Coding</span>
         <span>60 min · OOD-focused</span>
       </div>
@@ -214,6 +221,7 @@
         <span class="freq freq-high">🔥 HIGH</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-coding">Coding</span>
         <span>60 min</span>
       </div>
@@ -235,6 +243,7 @@
         <span class="freq freq-high">🔥 HIGH</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-coding">Coding</span>
         <span>60 min</span>
       </div>
@@ -259,6 +268,7 @@
         <span class="freq freq-high">🔥 HIGH</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-coding">Coding</span>
         <span>60 min · 5 sub-problems</span>
       </div>
@@ -275,6 +285,7 @@
         <span class="freq freq-high">🔥 HIGH</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-coding">Coding</span>
         <span>60 min</span>
       </div>
@@ -296,6 +307,7 @@
         <span class="freq freq-med">NEW</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role tag-role-ml">ML</span>
         <span class="tag tag-ml">ML</span>
         <span class="tag tag-coding">Coding</span>
         <span>60 min · Research Org MLE · numpy</span>
@@ -319,6 +331,7 @@
         <span class="freq freq-med">NEW</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role tag-role-ml">ML</span>
         <span class="tag tag-ml">ML</span>
         <span class="tag tag-coding">Coding</span>
         <span>Lead MLE phone screen</span>
@@ -342,6 +355,7 @@
         <span class="freq freq-med">NEW</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-coding">Coding</span>
         <span>Phone screen · May 2026</span>
       </div>
@@ -357,6 +371,7 @@
         <span class="freq freq-med">MEDIUM</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-coding">Coding</span>
         <span>Phone screen</span>
       </div>
@@ -374,6 +389,7 @@
         <span class="freq freq-med">MEDIUM</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-coding">Coding</span>
       </div>
       <div class="q-detail">
@@ -388,6 +404,7 @@
         <span class="freq freq-med">MEDIUM</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-coding">Coding</span>
         <span>4 sub-problems, sequential reveal</span>
       </div>
@@ -403,6 +420,7 @@
         <span class="freq freq-med">MEDIUM</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-coding">Coding</span>
       </div>
       <div class="q-detail">
@@ -417,6 +435,7 @@
         <span class="freq freq-med">MEDIUM</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-coding">Coding</span>
       </div>
       <div class="q-detail">
@@ -431,6 +450,7 @@
         <span class="freq freq-med">MEDIUM</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-coding">Coding</span>
         <span>Usually 4 parts, often only 2 completed</span>
       </div>
@@ -445,6 +465,7 @@
         <div class="q-text">More Coding Problems (from 1P3A problem bank)</div>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-coding">Coding</span>
         <span>Lower frequency / less detail available</span>
       </div>
@@ -461,6 +482,54 @@
           <li>Webhook Delivery System</li>
         </ul>
         <span class="source-link">Source: <a href="https://www.1point3acres.com/interview/problems/company/openai" target="_blank">1P3A problem bank</a> (146 total OpenAI questions)</span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Implement a ChatGPT-like Chat UI in React</div>
+        <span class="freq freq-med">NEW</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-role tag-role-frontend">Frontend</span>
+        <span class="tag tag-coding">Coding</span>
+        <span>React · streaming</span>
+      </div>
+      <div class="q-detail">
+        Build a ChatGPT-like chat UI with streaming responses, loading states, and message flow.
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/interview/problems/7754ac3d-eaf8-4ebc-855d-45a901c39e18" target="_blank">OJ problem</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Android Jetpack Compose Rating Card</div>
+        <span class="freq freq-med">NEW</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-role tag-role-mobile">Mobile</span>
+        <span class="tag tag-coding">Coding</span>
+        <span>Android · Jetpack Compose</span>
+      </div>
+      <div class="q-detail">
+        Build an Android Jetpack Compose rating card with comment validation and submission state.
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/interview/problems/8e9c52ef-e7bd-43cb-8b11-63389889bfdb" target="_blank">OJ problem</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Design a Simple iOS Application</div>
+        <span class="freq freq-med">NEW</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-role tag-role-mobile">Mobile</span>
+        <span class="tag tag-coding">Coding</span>
+        <span>iOS</span>
+      </div>
+      <div class="q-detail">
+        Mobile development question — design and implement a simple iOS application.
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/interview/problems/company/openai" target="_blank">1P3A problem bank</a></span>
       </div>
     </div>
   </div>
@@ -480,6 +549,7 @@
         <span class="freq freq-hot">🔥 VERY HIGH</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-design">System Design</span>
         <span>60 min · Very tight on time</span>
       </div>
@@ -500,6 +570,7 @@
         <span class="freq freq-hot">🔥 VERY HIGH</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-design">System Design</span>
       </div>
       <div class="q-detail">
@@ -519,6 +590,7 @@
         <span class="freq freq-high">🔥 HIGH</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-design">System Design</span>
       </div>
       <div class="q-detail">
@@ -538,6 +610,7 @@
         <span class="freq freq-med">MEDIUM</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-design">System Design</span>
       </div>
       <div class="q-detail">
@@ -552,6 +625,7 @@
         <span class="freq freq-med">MEDIUM</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-design">System Design</span>
         <span>VO round</span>
       </div>
@@ -567,6 +641,7 @@
         <span class="freq freq-med">MEDIUM</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-design">System Design</span>
         <span>VO round</span>
       </div>
@@ -582,6 +657,7 @@
         <span class="freq freq-high">🔥 HIGH</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-design">System Design</span>
         <span>Phone screen + Onsite</span>
       </div>
@@ -603,6 +679,7 @@
         <span class="freq freq-med">NEW</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role tag-role-ml">ML</span>
         <span class="tag tag-design">System Design</span>
         <span class="tag tag-ml">ML</span>
         <span>MLE phone screen</span>
@@ -623,6 +700,7 @@
         <div class="q-text">More SD Problems (from 1P3A)</div>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role">General</span>
         <span class="tag tag-design">System Design</span>
       </div>
       <div class="q-detail">
@@ -653,6 +731,7 @@
         <span class="freq freq-high">🔥 HIGH</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role tag-role-ml">ML</span>
         <span class="tag tag-ml">ML</span>
         <span class="tag tag-coding">Coding</span>
         <span>60 min per round</span>
@@ -668,6 +747,7 @@
         <div class="q-text">Prompt Backpropagation, PyTorch, Autograd</div>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role tag-role-ml">ML</span>
         <span class="tag tag-ml">ML</span>
         <span>ML Onsite</span>
       </div>
@@ -682,6 +762,7 @@
         <div class="q-text">Mining Novel Data from Large Unlabeled Corpus</div>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role tag-role-ml">ML</span>
         <span class="tag tag-ml">ML</span>
         <span class="tag tag-design">Design</span>
       </div>
@@ -696,6 +777,7 @@
         <div class="q-text">Vectorized 1-NN and Neural Network Forward Pass</div>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role tag-role-ml">ML</span>
         <span class="tag tag-ml">ML</span>
         <span class="tag tag-coding">Coding</span>
       </div>
@@ -711,6 +793,7 @@
         <span class="freq freq-high">🔥 HIGH</span>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role tag-role-ml">ML</span>
         <span class="tag tag-ml">ML</span>
         <span>Phone screen + Lead MLE</span>
       </div>
@@ -730,6 +813,7 @@
         <div class="q-text">Data Labeling Task Scheduler</div>
       </div>
       <div class="q-meta">
+        <span class="tag tag-role tag-role-ml">ML</span>
         <span class="tag tag-ml">ML</span>
         <span class="tag tag-coding">Coding</span>
         <span>MLE role</span>

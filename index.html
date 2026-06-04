@@ -105,7 +105,7 @@
     <div class="stats">
       <span>📊 958+ threads</span>
       <span>💬 16,700+ replies</span>
-      <span>🔄 Updated June 3, 2026</span>
+      <span>🔄 Updated June 4, 2026</span>
     </div>
   </div>
 
@@ -367,6 +367,29 @@
 
     <div class="q-card" onclick="this.classList.toggle('open')">
       <div class="q-header">
+        <div class="q-text">Distributed Rate Limiter with Persistence</div>
+        <span class="freq freq-med">NEW</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-role">General</span>
+        <span class="tag tag-coding">Coding</span>
+        <span>Phone screen · June 2026</span>
+      </div>
+      <div class="q-detail">
+        Design a distributed rate limiter with persistence, handling clock skew across nodes and a Redis fallback.
+        <br><br>Key follow-up: "Redis goes down — you must fall back to local storage."
+        <ul>
+          <li>Write counts synchronously to a local file</li>
+          <li>Use an async queue to recover data back into Redis</li>
+          <li>Support a degraded mode to guarantee availability</li>
+        </ul>
+        New OJ problem (problem count rose 117 → 118).
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/bbs/thread-1179023-1-1.html" target="_blank">thread-1179023</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
         <div class="q-text">Implement cd Command with Symlinks</div>
         <span class="freq freq-med">MEDIUM</span>
       </div>
@@ -614,8 +637,29 @@
         <span class="tag tag-design">System Design</span>
       </div>
       <div class="q-detail">
-        Design online chess platform. Interviewer goes very deep on details — "cache存什么怎么存都要说清楚"
-        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1164914-1-1.html" target="_blank">thread-1164914</a>, <a href="https://www.1point3acres.com/interview/problems/post/7100178" target="_blank">problems/7100178</a></span>
+        Design online chess platform. Interviewer goes very deep on details — be explicit about what the cache stores and how. One June 2026 onsite (interviewer ex-Twitch) spent significant time on the matching service: how the queue maps to backend services. Think through matching-service details carefully.
+        <span class="source-link">Sources: <a href="https://www.1point3acres.com/bbs/thread-1164914-1-1.html" target="_blank">thread-1164914</a>, <a href="https://www.1point3acres.com/bbs/thread-1178966-1-1.html" target="_blank">thread-1178966</a>, <a href="https://www.1point3acres.com/interview/problems/post/7100178" target="_blank">problems/7100178</a></span>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="this.classList.toggle('open')">
+      <div class="q-header">
+        <div class="q-text">Design Instagram (Feed Generation)</div>
+        <span class="freq freq-med">NEW</span>
+      </div>
+      <div class="q-meta">
+        <span class="tag tag-role">General</span>
+        <span class="tag tag-design">System Design</span>
+        <span>Phone screen · June 2026</span>
+      </div>
+      <div class="q-detail">
+        Design Instagram with focus on feed generation strategy.
+        <ul>
+          <li>Core components</li>
+          <li>Data flow: post → storage → feed generation → delivery</li>
+          <li>Scaling considerations</li>
+        </ul>
+        <span class="source-link">Source: <a href="https://www.1point3acres.com/bbs/thread-1179023-1-1.html" target="_blank">thread-1179023</a></span>
       </div>
     </div>
 
